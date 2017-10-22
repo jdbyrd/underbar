@@ -105,7 +105,6 @@
   _.uniq = function(array, isSorted, iterator) {
 
     var result = [];
-
     _.each(array, function(item, index){
       if(!result.includes(item)){
         result.push(item);
@@ -173,6 +172,15 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
 
+    _.each(collection, function(item, index){
+      if(accumulator === undefined &&  index === 0){
+        accumulator = item;
+      }else{
+        accumulator = iterator(accumulator, item);
+      }
+    });
+
+    return accumulator;
 
   };
 
