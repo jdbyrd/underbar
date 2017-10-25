@@ -369,6 +369,20 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; 
+  }
+  return _.reduce(array, function(shuffled, item){
+    var random = getRandomInt(0, array.length);
+    while(shuffled[random] !== undefined){
+      random = getRandomInt(0, array.length);
+    }
+    shuffled[random] = item;
+    return shuffled;
+    }, []);
   };
 
 
